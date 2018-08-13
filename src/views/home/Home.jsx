@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import { Footer, Header, TopNav, SubNav } from '../../components';
-import { Cryptocurrency } from '../../views';
 
 class Home extends Component {
     render() {
         return (
             <div>
                 <TopNav/>
-                <SubNav/>
-                <Container className="container-fluid">
-                    <Cryptocurrency/> 
-                </Container>
+                <SubNav tabTitles={[{title: 'Home', icon: 'home'},
+                    {title: 'Top 100', icon: 'globe'}, {title: 'Chart', icon: 'chart-bar'}]}/>
                 <Footer/>
             </div>
         )

@@ -3,10 +3,10 @@ import { Row, Col } from 'reactstrap';
 
 import CurrencyTable from './components/CurrencyTable';
 import CurrencyInfo from './components/CurrencyInfo';
-import CurrencyTicker from '../../utils/CurrencyTicker';
+import CryptoCurrencyTicker from '../../utils/CryptoCurrencyTicker';
 
 
-class Cryptocurrency extends Component {
+class TopCryptoCurrency extends Component {
     
     constructor(props) {
         super(props);           
@@ -39,7 +39,7 @@ class Cryptocurrency extends Component {
         const { currentPage} = this.state;
 
         return (
-            <CurrencyTicker query={{ value: this.state.value}} render={({ coins, metadata }) => {        
+            <CryptoCurrencyTicker query={{ value: this.state.value}} render={({ coins, metadata }) => {        
                 return <div> 
                     <Row>
                         <Col sm="2">
@@ -62,4 +62,4 @@ class Cryptocurrency extends Component {
     }
 }
 
-export default Cryptocurrency;
+export default TopCryptoCurrency;

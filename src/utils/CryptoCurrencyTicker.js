@@ -1,10 +1,9 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import CryptoCompareApiClient from './cryptoCompare/CryptoCompareApiClient';
 
-class CurrencyTicker extends Component {
+class CryptoCurrencyTicker extends Component {
 
     static propTypes = {
         query: PropTypes.object.isRequired,
@@ -73,4 +72,4 @@ class CurrencyTicker extends Component {
     }
 }
 
-export default CurrencyTicker;
+export default CryptoCurrencyTicker;
