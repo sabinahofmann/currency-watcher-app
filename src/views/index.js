@@ -1,7 +1,9 @@
 import Home from './home/Home'
-import TopCryptoCurrency from './cryptocurrency/TopCryptoCurrency'
+import TopCryptoCurrency from './coins/TopCryptoCurrency'
+import Coins from './coins/Coins'
 
 export {
-  Home,
-  TopCryptoCurrency
+    Home,
+    Coins,
+    TopCryptoCurrency
 }

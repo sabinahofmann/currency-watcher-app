@@ -62,6 +62,10 @@ class CryptoCurrencyTicker extends Component {
             this.fetchCryptocurrencyData();
         }
     }
+    
+    componentWillUnmount() {
+        clearInterval();
+    }
 
     render() {    
         return this.props.render({

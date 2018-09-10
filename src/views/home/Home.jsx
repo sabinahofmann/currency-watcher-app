@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
-import { Container } from 'reactstrap';
-import { Footer, Header, TopNav, SubNav } from '../../components';
+import { Container, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 
 class Home extends Component {
     render() {
         return (
             <div>
-                <TopNav/>
-                <SubNav tabTitles={[{title: 'Home', icon: 'home'},
-                    {title: 'Top 100', icon: 'globe'}, {title: 'Chart', icon: 'chart-bar'}]}/>
-                <Footer/>
+                <Container>
+                    <Row>
+                      <Col sm="6">
+                        <Card body>
+                          <CardTitle>Coins</CardTitle>
+                          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                          <Button>Go somewhere</Button>
+                        </Card>
+                      </Col>
+                      <Col sm="6">
+                        <Card body>
+                          <CardTitle>Stocks</CardTitle>
+                          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                          <Button>Go somewhere</Button>
+                        </Card>
+                      </Col>
+                    </Row>        
+                </Container>
             </div>
         )
     }

@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink, NavbarBrand, Container } from 'reactstrap';
+import { NavLink as RoutingLink } from 'react-router-dom';
+import { Collapse, Navbar, NavbarToggler, NavLink,
+    Nav, NavItem, NavbarBrand, Container } from 'reactstrap';
+
+import Routes from '../../routes/Routes';
+
 
 class TopNav extends Component {
     constructor(props) {
@@ -21,15 +26,15 @@ class TopNav extends Component {
             <div>
                 <Navbar className="main-top-header" color="dark" dark expand="sm" sticky="top">
                     <Container>
-                        <NavbarBrand href="/">{'ticker'.toUpperCase()} </NavbarBrand>
+                        <NavbarBrand exact={true} to="/" tag={RoutingLink}>{'ticker'.toUpperCase()}</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav navbar>
                                 <NavItem>
-                                    <NavLink href="/">Coins</NavLink>
+                                    <NavLink exact={true} to="/coins" tag={RoutingLink}>Coins</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink>Stocks</NavLink>
+                                    <NavLink exact={true} to="/stocks" tag={RoutingLink}>Stocks</NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>
