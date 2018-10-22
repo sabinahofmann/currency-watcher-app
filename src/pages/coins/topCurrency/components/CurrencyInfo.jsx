@@ -5,14 +5,13 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 
 function CurrencyInfo(props) {
-    const t = props.metadata;
     return  (
         <div>
             <Card>
                  <CardBody>
                 <CardText>
-                    Last Update:  
-                        <Moment unix>{t}</Moment>
+                    Last update:  
+                        <Moment unix>{props.lastUpdate}</Moment>
                     </CardText>
                     <Button size="sm" className="mr-1 w-25" onClick={props.onClick} value="EUR">
                         <FontAwesomeIcon icon='euro-sign'/>

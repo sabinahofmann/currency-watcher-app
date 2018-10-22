@@ -1,0 +1,7 @@
+.coinTable td {
+    width: 6.1%;
+}
+
+.coinForm label {
+    white-space: nowrap;
+}

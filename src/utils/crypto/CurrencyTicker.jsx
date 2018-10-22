@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import CryptoCompareApiClient from './cryptoCompare/CryptoCompareApiClient';
+import ApiClient from './ApiClient';
 
-class CryptoCurrencyTicker extends Component {
+class CurrencyTicker extends Component {
 
     static propTypes = {
         query: PropTypes.object.isRequired,
@@ -15,14 +15,14 @@ class CryptoCurrencyTicker extends Component {
         this.state = {
             error: null,
             data: [],
-            metadata: []
+            timestamp: null
         }
     }
     
     fetchCryptocurrencyData(){
         let currency = this.props.query.value;
 
-        CryptoCompareApiClient.getTopList(50, currency)
+        ApiClient.getTopList(50, currency)
             .then(json => {
                 let coinsName = json.data['Data'].map(result => {
                     return {
@@ -30,7 +30,7 @@ class CryptoCurrencyTicker extends Component {
                         symbol: result['CoinInfo']['Name']
                     }              
                 });
-                CryptoCompareApiClient.getCoinPriceAvg(coinsName.map(coin => coin['symbol']), currency)
+                ApiClient.getCoinPriceAvg(coinsName.map(coin => coin['symbol']), currency)
                     .then(j => {
                         let data = coinsName.map(coinName => {
                             let coin = {
@@ -46,7 +46,7 @@ class CryptoCurrencyTicker extends Component {
                             };
                             return coin;
                         }).sort(function(a,b) { return a.sort_by - b.sort_by;}).reverse();
-                        this.setState({data: data});  
+                        this.setState({data: data, timestamp: Date.now()});  
                     }
                 ).catch(error => this.setState({error}));
         }).catch(error => this.setState({error}));
@@ -70,10 +70,10 @@ class CryptoCurrencyTicker extends Component {
     render() {    
         return this.props.render({
             coins: this.state.data,
-            metadata: this.state.metadata,
+            timestamp: this.state.timestamp,
             error: this.state.error
         });
     }
 }
 
-export default CryptoCurrencyTicker;
+export default CurrencyTicker;

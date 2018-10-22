@@ -3,9 +3,6 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Container } from 'reactstra
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classnames from 'classnames';
 
-import { TopCryptoCurrency } from '../../views';
-
-
 class SubNav extends Component {
     constructor(props) {
         super(props);
@@ -23,15 +20,15 @@ class SubNav extends Component {
             });
         }
     }
-    
+
     render() {
         return (
             <div className="main-sub-header">
                 <Container>
                     <Nav tabs>
-                        {this.props.tabTitles.map((data, i) =>
+                        {this.props.tabs.map((data, i) =>
                             <NavItem key={i}>
-                                <NavLink className={classnames({ active: this.state.activeTab === {i}} )} 
+                                <NavLink className={classnames({ active: this.state.activeTab === {i}})} 
                                         onClick={() => {this.toggle({i}); }} key={i}>
                                      <FontAwesomeIcon icon={data.icon}/> {data.title}
                                 </NavLink>
@@ -42,36 +39,13 @@ class SubNav extends Component {
                 <div className="main-nav-tabs-sub">
                     <Container>                 
                         <TabContent activeTab={this.state.activeTab}>
-                            {this.props.tabTitles.map(function(data, i) {
-                                if(data.title === 'Top 100'){
-                                    return (
-                                        <TabPane tabId={i} key={i}>
-                                            <TopCryptoCurrency/> 
-                                        </TabPane>
-                                    )
-                                }
-                                if(data.title === 'Home'){
-                                    return (
-                                        <TabPane tabId={i} key={i}>
-                                            <Nav>
-                                                <NavItem>
-                                                    <NavLink href="#">
-                                                        <FontAwesomeIcon icon='desktop'/> Dashboard
-                                                    </NavLink>
-                                                </NavItem>
-                                                <NavItem>
-                                                    <NavLink href="#">
-                                                        <FontAwesomeIcon icon='cogs'/> Settings
-                                                    </NavLink>
-                                                </NavItem>
-                                            </Nav>
-                                        </TabPane>
-                                    )
-                                }else{
-                                    return (
-                                        <TabPane tabId={i} key={i}></TabPane>
-                                    )
-                                }
+                            {this.props.tabs.map(function(data, i) { 
+                                const ComponentTab = data.key
+                                return (
+                                    <TabPane tabId={i} key={i}>
+                                        <ComponentTab cssStyle={data.cssStyle}/>
+                                    </TabPane>
+                                )                              
                             })}
                         </TabContent>
                     </Container>

@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
-const MainPagination = ({ totalCount, pageSize, currentPage, onCurrentPageChange }) => {
+const MainPagination = ({ 
+    totalCount, 
+    pageSize, 
+    currentPage, 
+    onCurrentPageChange }) => {
     
     const pagesCount = Math.ceil(totalCount / pageSize);
 
@@ -36,10 +40,10 @@ const MainPagination = ({ totalCount, pageSize, currentPage, onCurrentPageChange
 };
 
 MainPagination.propTypes = {
-  currentPage: PropTypes.number.isRequired,
-  onCurrentPageChange: PropTypes.func.isRequired,
-  totalCount: PropTypes.number.isRequired,
-  pageSize: PropTypes.number.isRequired
+    currentPage: PropTypes.number.isRequired,
+    onCurrentPageChange: PropTypes.func.isRequired,
+    totalCount: PropTypes.number.isRequired,
+    pageSize: PropTypes.number.isRequired
 };
 
 export default MainPagination;

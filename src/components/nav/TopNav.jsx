@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink as RoutingLink } from 'react-router-dom';
 import { Collapse, Navbar, NavbarToggler, NavLink,
-    Nav, NavItem, NavbarBrand, Container } from 'reactstrap';
-
-import Routes from '../../routes/Routes';
-
+    Nav, NavItem, NavbarBrand, Container 
+} from 'reactstrap';
 
 class TopNav extends Component {
     constructor(props) {
