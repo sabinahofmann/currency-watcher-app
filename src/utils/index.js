@@ -1,5 +1,5 @@
-import CurrencyTicker from './crypto/CurrencyTicker';
+import ApiClient from './crypto/ApiClient';
 
 export {
-    CurrencyTicker
+    ApiClient
 }

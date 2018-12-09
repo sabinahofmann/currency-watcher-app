@@ -3,7 +3,7 @@ import { Row, Col, Container } from 'reactstrap';
 
 import CurrencyTable from './components/CurrencyTable';
 import CurrencyInfo from './components/CurrencyInfo';
-import CurrencyTicker from '../../../utils/crypto/CurrencyTicker';
+import CurrencyTicker from './components/CurrencyTicker';
 
 
 class TopCryptoCurrency extends Component {

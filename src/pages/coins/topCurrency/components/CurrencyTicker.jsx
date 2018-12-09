@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ApiClient from './ApiClient';
+import ApiClient from '../../../../utils/crypto/ApiClient';
 
 class CurrencyTicker extends Component {
 

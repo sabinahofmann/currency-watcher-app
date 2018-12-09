@@ -8,10 +8,10 @@ export const appName = 'currency-watcher-app';
 
 const CryptoCompareApiClient = {
     getTopList: (limit, currency) => (
-      axiosClient.get(`top/totalvol?limit=${limit}&tsym=${currency}&extraParams=${appName}`)
+        axiosClient.get(`top/totalvol?limit=${limit}&tsym=${currency}&extraParams=${appName}`)
     ),
     getCoinPriceAvg: (coins, currency) => (
-      axiosClient.get(`pricemultifull?fsyms=${coins}&tsyms=${currency}`)),
+        axiosClient.get(`pricemultifull?fsyms=${coins}&tsyms=${currency}`)),
     getCoins: () => (axiosClient.get(`all/coinlist`)),
     getChanges: () => (axiosClient.get('all/exchanges'))
 };
