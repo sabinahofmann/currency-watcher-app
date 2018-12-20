@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-
-import topCurrency from '../../../../topCurrency/reducers';
+import topCryptoCurrency from './topCryptoCurrency'
 
 const rootReducer = combineReducers({
-    topCurrency
-});
+  topCryptoCurrency
+})
 
-export default rootReducer;
+export default rootReducer
