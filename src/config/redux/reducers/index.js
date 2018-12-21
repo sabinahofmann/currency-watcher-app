@@ -1,8 +1,29 @@
-import { combineReducers } from 'redux';
-import topCryptoCurrency from './topCryptoCurrency'
+import {
+  FETCH_PAGE_REQUEST,
+  FETCH_PAGE_SUCCESS, FETCH_PAGE_FAILURE
+} from '../actions/types';
 
-const rootReducer = combineReducers({
-  topCryptoCurrency
-})
+const initialState = {
+  pathname: '/',
+  loading: false,
+};
 
-export default rootReducer
+const routesReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_PAGE_REQUEST:
+      return { ...state, loading: action.loading };
+    case FETCH_PAGE_FAILURE:
+      return { ...state, loading: action.loading, error: true };
+    case FETCH_PAGE_SUCCESS:
+      return {
+        ...state,
+        loading: action.loading,
+        [action.pageType]: action.data,
+        error: false,
+      };
+    default:
+      return state;
+  }
+};
+
+export default routesReducer;
