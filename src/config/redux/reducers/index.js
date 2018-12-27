@@ -1,7 +1,5 @@
-import {
-  FETCH_PAGE_REQUEST,
-  FETCH_PAGE_SUCCESS, FETCH_PAGE_FAILURE
-} from '../actions/types';
+import { FETCH_PAGE_REQUEST,
+  FETCH_PAGE_SUCCESS, FETCH_PAGE_FAILURE } from "../constants/action-types";
 
 const initialState = {
   pathname: '/',

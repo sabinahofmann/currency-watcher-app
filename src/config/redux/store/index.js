@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import ReduxThunk from 'redux-thunk';
 import logger from 'redux-logger';
-import rootReducer from "../reducers/index";
+import routesReducer from "../reducers/index";
 
-const middleware = process.env.NODE_ENV !== 'production' ? [thunk, logger()] : [thunk];
-const store = createStore(rootReducer, applyMiddleware(...middleware));
+const middleware = process.env.NODE_ENV !== 'production' ? [ReduxThunk, logger] : [ReduxThunk];
+const store = createStore(routesReducer, applyMiddleware(...middleware));
 
-export const testStore = createStore(rootReducer, applyMiddleware(thunk));
+export const testStore = createStore(routesReducer, applyMiddleware(ReduxThunk));
 
 export default store;

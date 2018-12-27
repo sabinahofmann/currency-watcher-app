@@ -1,4 +1,5 @@
-import { FETCH_PAGE_REQUEST } from "../constants/action-types";
+import { FETCH_PAGE_REQUEST,
+  FETCH_PAGE_SUCCESS, FETCH_PAGE_FAILURE } from "../constants/action-types";
 import { TOP_COINS, HOME, SEARCH, COINS } from "../constants/page-types";
 
 export const fetchPage = (routes, params) => {
@@ -17,7 +18,7 @@ export const fetchPage = (routes, params) => {
         break;
       case TOP_COINS: {
         const formData = params;
-        ajaxPromise =  ApiClient.getTopList(50, currency)
+        ApiClient.getTopList(50, currency)
             .then(json => {
                 let coinsName = json.data['Data'].map(result => {
                     return {
@@ -41,10 +42,10 @@ export const fetchPage = (routes, params) => {
                             };
                             return coin;
                         }).sort(function(a,b) { return a.sort_by - b.sort_by;}).reverse();
-                        this.setState({data: data, timestamp: Date.now()});  
+                        ajaxPromise({data: data, timestamp: Date.now()});  
                     }
-                ).catch(error => this.setState({error}));
-            }).catch(error => this.setState({error}));
+                ).catch(error => ajaxPromise({error}));
+            }).catch(error => ajaxPromise({error}));
         break;
       }
       default:
