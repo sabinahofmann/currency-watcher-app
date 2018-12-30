@@ -1,11 +1,20 @@
-import { createStore, applyMiddleware } from 'redux';
-import ReduxThunk from 'redux-thunk';
-import logger from 'redux-logger';
+import { createStore, applyMiddleware, compose } from 'redux'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+import thunk from 'redux-thunk'
+import { createBrowserHistory } from 'history'
 import routesReducer from "../reducers/index";
 
-const middleware = process.env.NODE_ENV !== 'production' ? [ReduxThunk, logger] : [ReduxThunk];
-const store = createStore(routesReducer, applyMiddleware(...middleware));
+export const history = createBrowserHistory()
 
-export const testStore = createStore(routesReducer, applyMiddleware(ReduxThunk));
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-export default store;
+const store = createStore(
+  routesReducer(history),
+  composeEnhancer(
+    applyMiddleware(
+      routerMiddleware(history),
+    ),
+  ),
+)
+
+export default store

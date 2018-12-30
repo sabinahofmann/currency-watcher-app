@@ -1,18 +1,22 @@
-import React, { Component } from 'react';
-import { Footer, TopNav } from './components';
+import React from 'react';
+import PropTypes from 'prop-types'
+import { ConnectedRouter } from 'connected-react-router'
+import { Footer } from './components';
 import Routes from './routes/Routes';
-import store from './config/redux/store'
 
-class App extends Component {
-    render() {
-        return (
-            <div>
-                <TopNav/>
-                <Routes store={store}/>
-                <Footer/>
-            </div>
-        );
-    }
+const App = ({ history }) => {
+  return (
+    <div>
+        <ConnectedRouter history={history}>
+            <Routes/>
+        </ConnectedRouter>
+        <Footer/>
+    </div>
+  )
 }
 
-export default App;
+App.propTypes = {
+  history: PropTypes.object,
+}
+
+export default App

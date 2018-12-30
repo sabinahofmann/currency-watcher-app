@@ -29,7 +29,7 @@ class SubNav extends Component {
                         {this.props.tabs.map((data, i) =>
                             <NavItem key={i}>
                                 <NavLink className={classnames({ active: this.state.activeTab === {i}})} 
-                                        onClick={() => {this.toggle({i}); }} key={i}>
+                                        onClick={() => {this.toggle({i});}} key={i}>
                                      <FontAwesomeIcon icon={data.icon}/> {data.title}
                                 </NavLink>
                             </NavItem>
@@ -55,4 +55,4 @@ class SubNav extends Component {
     }
 }
 
-export default SubNav;
+export default SubNav

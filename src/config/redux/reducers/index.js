@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux'
+import { connectRouter } from 'connected-react-router'
 import { FETCH_PAGE_REQUEST,
   FETCH_PAGE_SUCCESS, FETCH_PAGE_FAILURE } from "../constants/action-types";
 
@@ -6,7 +8,7 @@ const initialState = {
   loading: false,
 };
 
-const routesReducer = (state = initialState, action) => {
+const routesReducers = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PAGE_REQUEST:
       return { ...state, loading: action.loading };
@@ -24,4 +26,9 @@ const routesReducer = (state = initialState, action) => {
   }
 };
 
-export default routesReducer;
+const routesReducer = (history) => combineReducers({
+  page: routesReducers,
+  router: connectRouter(history)
+})
+
+export default routesReducer

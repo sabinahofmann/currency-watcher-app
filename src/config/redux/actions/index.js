@@ -1,56 +1,34 @@
 import { FETCH_PAGE_REQUEST,
   FETCH_PAGE_SUCCESS, FETCH_PAGE_FAILURE } from "../constants/action-types";
 import { TOP_COINS, HOME, SEARCH, COINS } from "../constants/page-types";
+import { push } from 'connected-react-router'
 
-export const fetchPage = (routes, params) => {
+const fetchPage = (params, bi) => {
+
+ console.log("HUH", params);
+ console.log("HHHHH", bi)
 
   return () => {
-    let ajaxPromise;
-    switch (routes.path) {
-      case HOMEPAGE:
-        ajaxPromise = HOMEPAGE;
+    let ajaxPromise = { type: '', state: [] };
+    switch (params['pathname']) {
+      case HOME:
+        ajaxPromise['type'] = HOME;
         break;
       case SEARCH:
-        ajaxPromise = SEARCH;
+        ajaxPromise['type'] = SEARCH;
         break;
       case COINS:
-        ajaxPromise = COINS;
+        ajaxPromise['type'] = COINS;
         break;
       case TOP_COINS: {
-        const formData = params;
-        ApiClient.getTopList(50, currency)
-            .then(json => {
-                let coinsName = json.data['Data'].map(result => {
-                    return {
-                        fullName: result['CoinInfo']['FullName'],
-                        symbol: result['CoinInfo']['Name']
-                    }              
-                });
-                ApiClient.getCoinPriceAvg(coinsName.map(coin => coin['symbol']), currency)
-                    .then(j => {
-                        let data = coinsName.map(coinName => {
-                            let coin = {
-                                symbol: coinName['symbol'],
-                                fullName: coinName['fullName'],
-                                price: j.data['RAW'][coinName['symbol']][currency]['PRICE'].toFixed(2),
-                                max_supply: j.data['RAW'][coinName['symbol']][currency]['SUPPLY'].toFixed(2),
-                                change_24h: j.data['RAW'][coinName['symbol']][currency]['CHANGEPCT24HOUR'].toFixed(2),
-                                market_cap: j.data['RAW'][coinName['symbol']][currency]['MKTCAP'].toFixed(2),
-                                volume_24h: j.data['RAW'][coinName['symbol']][currency]['TOTALVOLUME24H'].toFixed(2),
-                                timestamp: j.data['RAW'][coinName['symbol']][currency]['LASTUPDATE'],
-                                sort_by: j.data['RAW'][coinName['symbol']][currency]['MKTCAP']
-                            };
-                            return coin;
-                        }).sort(function(a,b) { return a.sort_by - b.sort_by;}).reverse();
-                        ajaxPromise({data: data, timestamp: Date.now()});  
-                    }
-                ).catch(error => ajaxPromise({error}));
-            }).catch(error => ajaxPromise({error}));
-        break;
+        ajaxPromise['type'] = TOP_COINS;
       }
       default:
-        '/';
+        ajaxPromise['type'] = '/';
         return;
     }
+    return ajaxPromise;
   };
 };
+
+export default fetchPage

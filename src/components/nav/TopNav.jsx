@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import { NavLink as RoutingLink } from 'react-router-dom';
+import PropTypes from 'prop-types'
+import { NavLink as RoutingLink } from 'react-router-dom'
 import { Collapse, Navbar, NavbarToggler, NavLink,
     Nav, NavItem, NavbarBrand, Container 
-} from 'reactstrap';
+} from 'reactstrap'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import fetchPage from '../../config/redux/actions'
+
 
 class TopNav extends Component {
     constructor(props) {
@@ -24,7 +29,7 @@ class TopNav extends Component {
             <div>
                 <Navbar className="main-top-header" color="dark" dark expand="sm" sticky="top">
                     <Container>
-                        <NavbarBrand exact={true} to="/" tag={RoutingLink}>{'ticker'.toUpperCase()}</NavbarBrand>
+                        <NavbarBrand exact={true} to="/" tag={RoutingLink} onClick={fetchPage(this.props)}>{'ticker'.toUpperCase()}</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav navbar>
@@ -32,7 +37,7 @@ class TopNav extends Component {
                                     <NavLink exact={true} to="/coins" tag={RoutingLink}>Coins</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink exact={true} to="/stocks" tag={RoutingLink}>Stocks</NavLink>
+                                    <NavLink exact={true} to="/stocks" tag={RoutingLink} onClick={fetchPage(this.props)}>Stocks</NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>
@@ -42,5 +47,18 @@ class TopNav extends Component {
         );
     }
 }
+   
+const mapStateToProps = state => ({
+  pathname: state.router.location.pathname,
+  search: state.router.location.search,
+  hash: state.router.location.hash,
+})
 
-export default TopNav;
+
+const mapDispatchToProps = dispatch => ({
+  fetchPage: (data) => {
+    dispatch(fetchPage(data));
+  },
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TopNav))
